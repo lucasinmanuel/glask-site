@@ -1,15 +1,13 @@
 import { Outlet, Link } from "react-router-dom"
 
-function Home() {
+function Allocation() {
   return (
     <main className="App">
         <div className="container">
-            <div className="progress-bar">
-                <span>00.00%</span>
-            </div>
+            <div>Allocation</div>
         </div>
     </main>
   );
 }
 
-export default Home;
+export default Allocation;

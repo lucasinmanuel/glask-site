@@ -1,4 +1,5 @@
 import logo from "../assets/logo.png"
+import "./header.css"
 import { Outlet, Link } from "react-router-dom"
 
 function Header() {
@@ -9,10 +10,13 @@ function Header() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/">allocation</Link>
+                        <Link target="_blank" to="/">$glask</Link>
                     </li>
                     <li>
-                        <Link target="_blank" to="/">$glask</Link>
+                        <Link to="/">home</Link>
+                    </li>
+                    <li>
+                        <Link to="/allocation">allocation</Link>
                     </li>
                     <li>
                         <Link target="_blank" to="/">telegram</Link>

@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './components/header';
+import Header from './components/Header';
 import Home from './pages/Home';
+import Allocation from './pages/Allocation';
 
 function App() {
   return (
@@ -10,8 +11,8 @@ function App() {
       <Header />
       <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="blogs" element={<Blogs />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="/allocation" element={<Allocation />} />
+          {/* <Route path="contact" element={<Contact />} />
           <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </BrowserRouter>
