@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png"
+import logo from "../../assets/logo.png"
 import "./header.css"
 import { Outlet, Link } from "react-router-dom"
 

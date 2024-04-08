@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom"
+import "./allocation.css"
 
 function Allocation() {
   return (
