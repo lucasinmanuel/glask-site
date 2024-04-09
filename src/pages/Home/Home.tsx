@@ -2,10 +2,11 @@ import "./home.css"
 
 function Home() {
   return (
-    <main className="App">
+    <main>
         <div className="container">
             <div className="progress-bar">
-                <span>00.00%</span>
+                <div></div>
+                <p>00.00%</p>
             </div>
         </div>
     </main>

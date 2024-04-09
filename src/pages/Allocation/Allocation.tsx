@@ -2,7 +2,7 @@ import "./allocation.css"
 
 function Allocation() {
   return (
-    <main className="App">
+    <main>
         <div className="container">
             <div>Allocation</div>
         </div>
