@@ -45,7 +45,6 @@ const MyComponent = () => {
     }
   }, [publicKey]);
 
-  // connection.getConfirmedSignaturesForAddress2(publicKey,{limit:10}).then(signatures=>console.log(signatures));
 
   const transferSol = async () => {
     if (!publicKey) throw new WalletNotConnectedError();
@@ -94,7 +93,7 @@ const MyComponent = () => {
         <WalletMultiButton />
         {publicKey ? (
           <div>
-            <p>my bal: {bal}</p>
+            <p>my balance: {bal}</p>
             <input
               value={sol}
               type="number"
