@@ -23,6 +23,7 @@ module.exports = function (config, env) {
         plugins: [
             ...config.plugins,
             new ProvidePlugin({
+                buffer:['buffer', 'Buffer'],
                 process: 'process/browser',
             }),
         ],
