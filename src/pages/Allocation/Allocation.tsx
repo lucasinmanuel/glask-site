@@ -1,4 +1,4 @@
-import "./allocation.css"
+require("./allocation.css");
 
 function Allocation() {
   return (

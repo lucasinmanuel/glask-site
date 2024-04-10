@@ -1,6 +1,4 @@
 main .container {
-    display: flex;
-    justify-content: center;
     padding: 3%;
 }
 
@@ -12,6 +10,7 @@ main .container {
     background-color: gray;
     text-align: center;
     border: 1px solid black;
+    margin: 0 auto 3% auto;
 }
 
 .progress-bar p {
@@ -20,4 +19,13 @@ main .container {
     margin: 0;
     font-weight: bold;
     position: absolute;
+}
+
+.wallet {
+    width: 100%;
+    max-width: 400px;
+    background-color: lightgray;
+    margin: 0 auto;
+    padding: 3%;
+    text-align: center;
 }
