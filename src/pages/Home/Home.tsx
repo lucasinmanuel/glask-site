@@ -110,7 +110,7 @@ const MyComponent = () => {
 };
 
 function Home() {
-  const network = WalletAdapterNetwork.Mainnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
+  const network = WalletAdapterNetwork.Devnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
   const endpoint = clusterApiUrl(network, true);
 
   const wallets = useMemo(
