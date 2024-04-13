@@ -38,13 +38,14 @@ const MyComponent = () => {
   const [bal, setBal] = useState<number>(0);
 
   useEffect(() => {
-    if (publicKey) {
-      connection
-        .getBalance(publicKey)
-        .then((bal) => setBal(bal / LAMPORTS_PER_SOL));
-    }
-  }, [publicKey]);
-
+    const fetchBalance = async () => {
+      if (publicKey && connection) {
+        const balance = await connection.getBalance(publicKey);
+        setBal(balance / LAMPORTS_PER_SOL);
+      }
+    };
+    fetchBalance();
+  }, [publicKey, connection]);
 
   const transferSol = async () => {
     if (!publicKey) throw new WalletNotConnectedError();
@@ -110,7 +111,7 @@ const MyComponent = () => {
 };
 
 function Home() {
-  const network = WalletAdapterNetwork.Devnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
+  const network = WalletAdapterNetwork.Mainnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
   const endpoint = clusterApiUrl(network, true);
 
   const wallets = useMemo(
