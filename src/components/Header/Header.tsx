@@ -19,6 +19,9 @@ function Header() {
                         <Link to="/allocation">allocation</Link>
                     </li>
                     <li>
+                        <Link target="_blank" to="/">whitepaper</Link>
+                    </li>
+                    <li>
                         <Link target="_blank" to="/">telegram</Link>
                     </li>
                     <li>
