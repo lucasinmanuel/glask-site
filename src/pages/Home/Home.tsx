@@ -175,7 +175,7 @@ function Home() {
     ],
     [network]
   );
-  // https://rough-proportionate-mountain.solana-mainnet.quiknode.pro/f91fe767abcd15798f217e45883093b94d5ac81d/
+  // https://solana-mainnet.core.chainstack.com/e502e26e507c953eb6afb893b59ee821
   return (
     <main>
       <ConnectionProvider endpoint={endpoint}>
