@@ -26,6 +26,8 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import getTopTransfers from "../../utils/getTopTransfers";
+import { useWalletContext } from "../../contexts/WalletContext";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("./home.css");
@@ -33,21 +35,28 @@ require("./home.css");
 const TARGET_BLOCK_TIME = 5000; // Tempo alvo de um bloco em milissegundos
 
 const MyComponent = () => {
-
-  
   const { publicKey, sendTransaction } = useWallet(); // Obtém a carteira da pessoa conectada
   const { connection } = useConnection();
-
+  const { setRanking } = useWalletContext();
+ 
   const [sol, setSol] = useState<number>(0);
   const [bal, setBal] = useState<number>(0);
   const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhada"|"">("");
   const [networkActivity, setNetworkActivity] = useState<string>("Normal"); // Inicializa a atividade da rede como "Normal"
 
-
   const fetchBalance = async () => {
     if (publicKey && connection) {
       const balance = await connection.getBalance(publicKey);
       setBal(balance / LAMPORTS_PER_SOL);
+
+      // Chamada para buscar as maiores transferências com paginação
+      getTopTransfers(connection,publicKey,10, undefined)
+      .then((transfers) => {
+          setRanking(transfers);
+      })
+      .catch((error) => {
+          console.error("Erro ao buscar transações:", error);
+      });
     }
   };
 
@@ -89,6 +98,7 @@ const MyComponent = () => {
 
       const transaction = new Transaction().add(
         SystemProgram.transfer({
+          programId: new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
           fromPubkey: publicKey,
           toPubkey: new PublicKey(
             "FXL9PtuDZ8X71K451ziF2YWb68wAdXGiubgCKzaeWMBH"
