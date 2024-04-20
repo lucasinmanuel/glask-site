@@ -11,15 +11,16 @@ export default async function getTopTransfers(connection:Connection,publicKey:Pu
             {
                 limit: limit, // Limite de transações para buscar
                 before: before
-            }
+            },
+            "confirmed"
         );
-  
+
         const totalPorCarteira = new Map();
   
         // Iterar sobre as transações
         for (const signature of transactions) {
             const tx = await connection.getTransaction(signature.signature,{commitment:"confirmed",maxSupportedTransactionVersion:1});
-  
+            
             // // Endereço da carteira remetente
             const remetente = tx?.transaction.message.getAccountKeys().get(0)?.toBase58();
             
@@ -28,7 +29,7 @@ export default async function getTopTransfers(connection:Connection,publicKey:Pu
             const b = tx?.meta?.preBalances[1];
             
             let valorTransferido = 0;
-            if(a && b){
+            if(a != undefined && b != undefined){
               valorTransferido = (a - b) / LAMPORTS_PER_SOL;
             }
   

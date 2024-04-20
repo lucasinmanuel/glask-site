@@ -19,7 +19,6 @@ import {
   Transaction,
   SystemProgram,
   LAMPORTS_PER_SOL,
-  Keypair,
 } from "@solana/web3.js";
 import {
   LedgerWalletAdapter,
@@ -44,14 +43,19 @@ const MyComponent = () => {
   const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhada"|"">("");
   const [networkActivity, setNetworkActivity] = useState<string>("Normal"); // Inicializa a atividade da rede como "Normal"
 
+  const chaveParaDoacao = new PublicKey("9JPUx1twRU63V1DaBJ6npurSRdPsiWmKTsPrJB3uViK"); // WALLET QUE VAI RECEBER AS DOAÇÕES
+
   const fetchBalance = async () => {
     if (publicKey && connection) {
+      
       const balance = await connection.getBalance(publicKey);
+      
       setBal(balance / LAMPORTS_PER_SOL);
 
       // Chamada para buscar as maiores transferências com paginação
-      getTopTransfers(connection,publicKey,10, undefined)
+      getTopTransfers(connection,chaveParaDoacao,10, undefined)
       .then((transfers) => {
+          console.log(transfers)
           setRanking(transfers);
       })
       .catch((error) => {
@@ -100,9 +104,7 @@ const MyComponent = () => {
         SystemProgram.transfer({
           programId: new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
           fromPubkey: publicKey,
-          toPubkey: new PublicKey(
-            "FXL9PtuDZ8X71K451ziF2YWb68wAdXGiubgCKzaeWMBH"
-          ),
+          toPubkey: chaveParaDoacao,
           lamports: lamportsI, // Quantidade de lamports a serem transferidos (1 SOL = 1000000000 lamports)
         })
       );
@@ -174,7 +176,7 @@ const MyComponent = () => {
 };
 
 function Home() {
-  const network = WalletAdapterNetwork.Devnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
+  const network = WalletAdapterNetwork.Testnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
   const endpoint = clusterApiUrl(network, true);
 
   const wallets = useMemo(
