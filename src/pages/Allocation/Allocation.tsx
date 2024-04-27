@@ -1,17 +1,58 @@
+import ReactPaginate from "react-paginate";
 import { useWalletContext } from "../../contexts/WalletContext";
+import { IconContext } from "react-icons";
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 
 require("./allocation.css");
 
-function Allocation() {
-  const { ranking } = useWalletContext();
-  console.log(ranking)
-  return (
-    <main>
-        <div className="container">
-            <div>Allocation</div>
+const Allocation = () => {
+    const { ranking, WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
+
+    const handlePageClick = (data: any)=>{
+      console.log(data)
+    }
+
+    return (
+        <div className="ranking">
+            <h2>Transactions for {WALLET_ADDRESS_FOR_DONATION}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Wallet Address</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {ranking?.transactions.map((tx, index) => (
+                        <tr key={index}>
+                            <td>{tx.carteira}</td>
+                            <td>{tx.total}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <ReactPaginate
+              containerClassName={"pagination"}
+              pageClassName={"page-item"}
+              activeClassName={"active"}
+              onPageChange={(event) => handlePageClick(event.selected)}
+              pageCount={ranking?.totalPages||0}
+              breakLabel="..."
+              previousLabel={
+                <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+                  <AiFillLeftCircle />
+                </IconContext.Provider>
+              }
+              nextLabel={
+                <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+                  <AiFillRightCircle />
+                </IconContext.Provider>
+              }
+            />
         </div>
-    </main>
-  );
-}
+    );
+};
+
+
 
 export default Allocation;

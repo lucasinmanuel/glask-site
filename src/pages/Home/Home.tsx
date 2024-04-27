@@ -1,31 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  ConnectionProvider,
-  WalletProvider,
   useConnection,
   useWallet,
 } from "@solana/wallet-adapter-react";
 import {
-  WalletAdapterNetwork,
   WalletNotConnectedError,
 } from "@solana/wallet-adapter-base";
 import {
-  WalletModalProvider,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import {
-  clusterApiUrl,
   PublicKey,
   Transaction,
   SystemProgram,
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
-import {
-  LedgerWalletAdapter,
-  SolflareWalletAdapter,
-  TorusWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
-import getTopTransfers from "../../utils/getTopTransfers";
 import { useWalletContext } from "../../contexts/WalletContext";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
@@ -33,34 +22,20 @@ require("./home.css");
 
 const TARGET_BLOCK_TIME = 5000; // Tempo alvo de um bloco em milissegundos
 
-const MyComponent = () => {
+const Home = () => {
   const { publicKey, sendTransaction } = useWallet(); // Obtém a carteira da pessoa conectada
   const { connection } = useConnection();
-  const { setRanking } = useWalletContext();
+  const { WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
  
   const [sol, setSol] = useState<number>(0);
   const [bal, setBal] = useState<number>(0);
   const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhada"|"">("");
   const [networkActivity, setNetworkActivity] = useState<string>("Normal"); // Inicializa a atividade da rede como "Normal"
 
-  const chaveParaDoacao = new PublicKey("9JPUx1twRU63V1DaBJ6npurSRdPsiWmKTsPrJB3uViK"); // WALLET QUE VAI RECEBER AS DOAÇÕES
-
   const fetchBalance = async () => {
     if (publicKey && connection) {
-      
-      const balance = await connection.getBalance(publicKey);
-      
-      setBal(balance / LAMPORTS_PER_SOL);
-
-      // Chamada para buscar as maiores transferências com paginação
-      getTopTransfers(connection,chaveParaDoacao,10, undefined)
-      .then((transfers) => {
-          console.log(transfers)
-          setRanking(transfers);
-      })
-      .catch((error) => {
-          console.error("Erro ao buscar transações:", error);
-      });
+      const DonorsBalance = await connection.getBalance(publicKey);
+      setBal(DonorsBalance / LAMPORTS_PER_SOL);
     }
   };
 
@@ -93,10 +68,10 @@ const MyComponent = () => {
   };
 
   const transferSol = async () => {
-    if (!publicKey) throw new WalletNotConnectedError();
+    if ( !publicKey ) throw new WalletNotConnectedError();
 
     let lamportsI = sol * LAMPORTS_PER_SOL;
-
+    console.log(lamportsI)
     try {
       const latestBlockHash = await connection.getLatestBlockhash();
 
@@ -104,7 +79,7 @@ const MyComponent = () => {
         SystemProgram.transfer({
           programId: new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
           fromPubkey: publicKey,
-          toPubkey: chaveParaDoacao,
+          toPubkey: new PublicKey(WALLET_ADDRESS_FOR_DONATION),
           lamports: lamportsI, // Quantidade de lamports a serem transferidos (1 SOL = 1000000000 lamports)
         })
       );
@@ -174,31 +149,5 @@ const MyComponent = () => {
     </div>
   );
 };
-
-function Home() {
-  const network = WalletAdapterNetwork.Testnet; // Devnet é teste. Você pode alterar para 'MainnetBeta' para a rede principal
-  const endpoint = clusterApiUrl(network, true);
-
-  const wallets = useMemo(
-    () => [
-      new LedgerWalletAdapter(),
-      new SolflareWalletAdapter({ network }),
-      new TorusWalletAdapter({ params: { network } }),
-    ],
-    [network]
-  );
-  // https://solana-mainnet.core.chainstack.com/e502e26e507c953eb6afb893b59ee821
-  return (
-    <main>
-      <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect={true}>
-          <WalletModalProvider>
-            <MyComponent />
-          </WalletModalProvider>
-        </WalletProvider>
-      </ConnectionProvider>
-    </main>
-  );
-}
 
 export default Home;

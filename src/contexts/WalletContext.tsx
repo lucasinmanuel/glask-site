@@ -1,8 +1,18 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+export interface Ranking {
+  transactions: {
+      carteira: string,
+      total: number
+  }[],
+  totalPages: number,
+  balance: number
+}
+
 interface WalletContextProps {
-    ranking: any,
-    setRanking: any
+    ranking: Ranking|undefined,
+    setRanking: (newValue:Ranking|undefined) => void,
+    WALLET_ADDRESS_FOR_DONATION: string
 }
 
 const WalletContext = createContext<WalletContextProps | undefined>(undefined);
@@ -12,10 +22,12 @@ interface WalletContextProviderProps {
 }
 
 export const WalletContextProvider: React.FC<WalletContextProviderProps> = ({ children }) => {
-  const [ranking, setRanking] = useState<any>([]);
+  const [ranking, setRanking] = useState<Ranking|undefined>();
+  const [WALLET_ADDRESS_FOR_DONATION,] = useState("9JPUx1twRU63V1DaBJ6npurSRdPsiWmKTsPrJB3uViK");
   return (
     <WalletContext.Provider value={{ 
-        ranking, setRanking
+        ranking, setRanking,
+        WALLET_ADDRESS_FOR_DONATION
     }}>
       {children}
     </WalletContext.Provider>

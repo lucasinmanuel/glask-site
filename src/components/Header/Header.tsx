@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import logo from "../../assets/logo.png"
 import "./header.css"
 import { Outlet, Link } from "react-router-dom"
+import { PublicKey } from "@solana/web3.js";
+import { Ranking, useWalletContext } from "../../contexts/WalletContext";
+import { useConnection } from "@solana/wallet-adapter-react";
 
 function Header() {
+    const { setRanking } = useWalletContext();
+    useEffect(()=>{
+        // Chamada para buscar as maiores transferências com paginação
+        fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
+            setRanking(data)
+        })
+    },[])
   return (
     <header>
         <div className="container">
