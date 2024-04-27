@@ -1,11 +1,38 @@
-.ranking {
-    display: flex;
-    font-family: sans-serif;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.container.alloction{
+    padding: 3%;
 }
+
+.container > h2,.container > h5 {
+    width: 100%;
+    text-align: center;
+}
+
+.container > h5 {
+  margin-top: 4px;
+}
+
+table{
+    border-top: 2px solid lightgray;
+    width: 100%;
+    text-align: center;
+    margin: 25px auto 0 auto;
+  }
+  tr{
+    border-bottom: 2px solid lightgray;
+  }
+  th,td{
+    padding: 8px;
+    border-bottom: 2px solid lightgray;
+  }
+  th:first-of-type{
+    width: 75%;
+  }
+  th:last-of-type{
+    width: 25%;
+  }
+  th:not(:last-of-type),td:not(:last-of-type){
+    border-right: 2px solid lightgray;
+  }
   
   .pagination {
     list-style: none;
@@ -14,8 +41,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2px;
+    gap: 10px;
     cursor: pointer;
+    margin: 25px auto 0 auto;
   }
   
   .active {
@@ -33,3 +61,4 @@
     align-items: center;
     margin-top: 2px;
   }
+  

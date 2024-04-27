@@ -43,6 +43,12 @@ const Home = () => {
   }, [publicKey, connection]);
 
   const transferSol = async () => {
+
+    if (!(sol > 0)) {
+      alert("O valor de transferência não é válido!")
+      return
+    }  
+
     if ( !publicKey ) throw new WalletNotConnectedError();
 
     let lamportsI = sol * LAMPORTS_PER_SOL;
@@ -96,24 +102,25 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
-      <div className="progress-bar">
+    <div className="container home">
+      {/* <div className="progress-bar">
         <div></div>
         <p>00.00%</p>
-      </div>
+      </div> */}
       <div className="wallet">
         <WalletMultiButton />
         {publicKey ? (
-          <div>
-            <p>My Balance: {bal}</p>
+          <div className="transfer-info">
+            <p><b>My Balance:</b> (SOL) {bal}</p>
             <input
               value={sol}
               type="number"
+              min={"0"}
               onChange={(e: any) => setSol(e.target?.value)}
             ></input>
             <button onClick={transferSol}>Transferir SOL</button>
             {
-              status != "" && <p>{status}</p>
+              status != "" && <span><b>{status}</b></span>
             }
           </div>
         ) : (

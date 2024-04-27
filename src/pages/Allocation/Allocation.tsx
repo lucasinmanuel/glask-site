@@ -13,24 +13,27 @@ const Allocation = () => {
     }
 
     return (
-        <div className="ranking">
-            <h2>Transactions for {WALLET_ADDRESS_FOR_DONATION}</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Wallet Address</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ranking?.transactions.map((tx, index) => (
-                        <tr key={index}>
-                            <td>{tx.carteira}</td>
-                            <td>{tx.total}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="container alloction">
+            <h2>Ranking (os dados são atualizados a cada 24 horas)</h2>
+            <h5>Transactions for {WALLET_ADDRESS_FOR_DONATION}</h5>
+            <div style={{overflow:"auto"}}>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Wallet Address</th>
+                          <th>Total (SOL)</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {ranking?.transactions.map((tx, index) => (
+                          <tr key={index}>
+                              <td>{tx.carteira}</td>
+                              <td>{tx.total}</td>
+                          </tr>
+                      ))}
+                  </tbody>
+              </table>
+            </div>
             <ReactPaginate
               containerClassName={"pagination"}
               pageClassName={"page-item"}
