@@ -14,7 +14,7 @@ const Allocation = () => {
 
     return (
         <div className="container alloction">
-            <h2>Ranking (os dados são atualizados a cada 24 horas)</h2>
+            <h2>Ranking (data is updated every 24 hours)</h2>
             <h5>Transactions for {WALLET_ADDRESS_FOR_DONATION}</h5>
             <div style={{overflow:"auto"}}>
               <table>

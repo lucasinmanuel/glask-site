@@ -98,7 +98,7 @@ const Home = () => {
               min={"0"}
               onChange={(e: any) => setSol(e.target?.value)}
             ></input>
-            <button onClick={transferSol}>Transferir SOL</button>
+            <button onClick={transferSol}>Transfer SOL</button>
             {
               status != "" && <span><b>{status}</b></span>
             }
