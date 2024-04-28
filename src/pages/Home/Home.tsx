@@ -20,8 +20,6 @@ import { useWalletContext } from "../../contexts/WalletContext";
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("./home.css");
 
-const TARGET_BLOCK_TIME = 5000; // Tempo alvo de um bloco em milissegundos
-
 const Home = () => {
   const { publicKey, sendTransaction } = useWallet(); // Obtém a carteira da pessoa conectada
   const { connection } = useConnection();
@@ -29,7 +27,7 @@ const Home = () => {
  
   const [sol, setSol] = useState<number>(0);
   const [bal, setBal] = useState<number>(0);
-  const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhada"|"">("");
+  const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhou. Talvez seja necessário atualizar o site"|"">("");
 
   const fetchBalance = async () => {
     if (publicKey && connection) {
@@ -77,26 +75,8 @@ const Home = () => {
       setStatus("Transação enviada");
 
       console.log("Transferência enviada:", signature);
-
-      const confirmation = await connection.confirmTransaction(
-        {
-          blockhash: latestBlockHash.blockhash,
-          lastValidBlockHeight: latestBlockHash.lastValidBlockHeight,
-          signature: signature,
-        },
-        "confirmed"
-      );
-
-      console.log("Status da transação:", confirmation);
-
-      if(confirmation.value.err == null){
-        setStatus("Transação confirmada");
-        fetchBalance();
-      }else{
-        setStatus("Transação falhada");
-      }
     } catch (error) {
-      setStatus("Transação falhada");
+      setStatus("Transação falhou. Talvez seja necessário atualizar o site");
       console.error("Falha ao enviar transferência:", error);
     }
   };
