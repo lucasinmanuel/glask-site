@@ -32,7 +32,8 @@ const Home = () => {
   const fetchBalance = async () => {
     if (publicKey && connection) {
       const DonorsBalance = await connection.getBalance(publicKey);
-      setBal(DonorsBalance / LAMPORTS_PER_SOL);
+      const balance = DonorsBalance / LAMPORTS_PER_SOL;
+      setBal(balance);
     }
   };
 
@@ -73,6 +74,7 @@ const Home = () => {
       const signature = await sendTransaction(transaction, connection);
 
       setStatus("Transação enviada");
+      setTimeout(()=>fetchBalance(),5000);
 
       console.log("Transferência enviada:", signature);
     } catch (error) {
