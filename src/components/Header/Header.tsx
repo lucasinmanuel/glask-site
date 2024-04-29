@@ -12,7 +12,7 @@ function Header() {
     useEffect(()=>{
         // Chamada para buscar as maiores transferências com paginação
         fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
-            setRanking(data)
+            setRanking({...data})
         })
     },[])
     return (
