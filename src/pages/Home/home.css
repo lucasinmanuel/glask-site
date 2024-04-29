@@ -1,0 +1,65 @@
+.container.home {
+    padding: 3%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 100%;
+    max-width: 200px;
+    height: 22px;
+    position: relative;
+    background-color: lightgray;
+    text-align: center;
+    border: 1px solid black;
+    margin: 0 auto 3% auto;
+}
+
+.progress-bar p {
+    width: 100%;
+    height: 22px;
+    margin: 0;
+    font-weight: bold;
+    position: absolute;
+}
+
+.wallet {
+    width: 100%;
+    height: 80%;
+    max-width: 400px;
+    background-color: white;
+    border: 4px solid black;
+    margin: 25px auto 0 auto;
+    padding: 3%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wallet-adapter-dropdown {
+    margin-bottom: 10px;
+}
+
+.transfer-info p {
+    margin: 10px 0;
+}
+
+.transfer-info input {
+    margin-bottom: 8px;
+    padding: 5px;
+    outline: none;
+}
+
+.transfer-info button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: white;
+    border: 3px solid black;
+}

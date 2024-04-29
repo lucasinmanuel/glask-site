@@ -1,0 +1,68 @@
+.container.alloction{
+    padding: 3%;
+    height: 100%;
+}
+
+.container h2,.container h5 {
+    width: 100%;
+    text-align: center;
+}
+
+.allocation_background {
+  background-color: white;
+  margin: 10px;
+  padding: 10px 0;
+}
+
+.allocation_background_table {
+  background-color: white;
+  margin: 10px;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+  }
+  tr{
+    border-bottom: 2px solid lightgray;
+  }
+  th,td{
+    padding: 8px;
+    border-bottom: 2px solid lightgray;
+  }
+  th:first-of-type{
+    width: 75%;
+  }
+  th:last-of-type{
+    width: 25%;
+  }
+  th:not(:last-of-type),td:not(:last-of-type){
+    border-right: 2px solid lightgray;
+  }
+  
+  .pagination {
+    list-style: none;
+    width: 31.5px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    margin: 0 auto 0 auto;
+  }
+  
+  .active {
+    background-color: #1e50ff;
+    border-radius: 50%;
+  }
+  
+  .page-item {
+    list-style: none;
+    padding: 2px 12px;
+    height: 31.5px;
+    width: 31.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+  }
+  

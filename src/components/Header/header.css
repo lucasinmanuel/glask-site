@@ -1,0 +1,33 @@
+header {
+    background-color: lightgray;
+    border-bottom: 4px solid black;
+    height: 10vh;
+    display: flex;
+}
+  
+header .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.active_link {
+    text-decoration: underline;
+}
+
+header nav ul {
+display: flex;
+gap: 1rem;
+list-style: none;
+}
+
+header nav ul li a {
+text-decoration: none;
+text-transform: uppercase;
+color: black;
+font-weight: 600;
+}
+
+header nav ul li a:hover {
+text-decoration: underline;
+}

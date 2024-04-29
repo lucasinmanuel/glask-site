@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 90vh;
+  background-image: url("./assets/glask-backaground.png");
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3%;
+}
