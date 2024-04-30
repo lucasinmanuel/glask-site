@@ -2,16 +2,33 @@ import ReactPaginate from "react-paginate";
 import { useWalletContext } from "../../contexts/WalletContext";
 import { IconContext } from "react-icons";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
+import { useEffect, useState } from "react";
 
 require("./allocation.css");
 
 const Allocation = () => {
     const { ranking, WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
-
-    const handlePageClick = (data: any)=>{
-      console.log(data)
+    const [currentPage,setCurrentPage] = useState<any[]>([]);
+    useEffect(()=>{
+      const page = ranking?.transactions.slice(0,10);
+      if(page){
+        setCurrentPage(page);
+      }
+    },[ranking]);
+    const handlePageClick = (pageNumber: any)=>{
+      // Calcular o índice inicial e final dos itens da página atual
+      let startIndex;
+      if(startIndex != 0){
+        startIndex = pageNumber * 10;
+      }else{
+        startIndex = (pageNumber - 1) * 10;
+      }
+      const endIndex = startIndex + 10;
+      const page = ranking?.transactions.slice(startIndex,endIndex);
+      if(page){
+        setCurrentPage(page);
+      }
     }
-
     return (
         <div className="container alloction">
             <div className="allocation_background">
@@ -27,7 +44,7 @@ const Allocation = () => {
                       </tr>
                   </thead>
                   <tbody>
-                      {ranking?.transactions.map((tx, index) => (
+                      {currentPage.map((tx, index) => (
                           <tr key={index}>
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>

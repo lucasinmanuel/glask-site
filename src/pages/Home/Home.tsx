@@ -106,7 +106,7 @@ const Home = () => {
             }
           </div>
         ) : (
-          <p>Nenhuma carteira conectada</p>
+          <p>No Connected Wallets</p>
         )}
       </div>
     </div>
