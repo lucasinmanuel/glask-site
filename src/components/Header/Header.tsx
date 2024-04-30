@@ -37,11 +37,11 @@ function Header() {
                         </li>
                         <span>|</span>
                         <li>
-                            <Link target="_blank" to="/">telegram</Link>
+                            <Link target="_blank" to="t.me/glaskcoinsol">telegram</Link>
                         </li>
                         <span>|</span>
                         <li>
-                            <Link target="_blank" to="/">twitter</Link>
+                            <Link target="_blank" to="https://twitter.com/glaskcoinsol">twitter</Link>
                         </li>
                     </ul>
                 </nav>
