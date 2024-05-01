@@ -44,7 +44,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "tsc --build --verbose && react-app-rewired build",
-    "test": "CI=true react-app-rewired test --passWithNoTests",
+    "test": "react-app-rewired test --passWithNoTests",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
