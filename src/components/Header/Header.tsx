@@ -21,7 +21,7 @@ function Header() {
                 <nav>
                     <ul>
                         <li>
-                            <Link target="_blank" to="/">$glask</Link>
+                            <Link target="_blank" to="https://solscan.io/token/3f3ymZn3xXpMziVSeqKLRUqiXejWi5xRKAP2Lhw2yLBi">$glask</Link>
                         </li>
                         <span>|</span>
                         <li>
