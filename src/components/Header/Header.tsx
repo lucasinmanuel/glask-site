@@ -33,7 +33,7 @@ function Header() {
                         </li>
                         <span>|</span>
                         <li>
-                            <Link target="_blank" to="/">whitepaper</Link>
+                            <Link target="_blank" to="https://glask-coin.gitbook.io/usdglask">whitepaper</Link>
                         </li>
                         <span>|</span>
                         <li>
