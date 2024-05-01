@@ -7,8 +7,9 @@ header {
   
 header .container {
 display: flex;
-justify-content: space-between;
 align-items: center;
+justify-content: center;
+gap: 20px;
 }
 
 .active_link {
@@ -43,5 +44,8 @@ text-decoration: underline;
 @media screen and (max-width:720px){
     header {
         height: 15vh;
+    }
+    .logo {
+        display: none;
     }
 }

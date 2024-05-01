@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import logo from "../../assets/logo.png"
 import "./header.css"
 import { Outlet, Link, useNavigate, useLocation } from "react-router-dom"
 import { PublicKey } from "@solana/web3.js";
 import { Ranking, useWalletContext } from "../../contexts/WalletContext";
-import { useConnection } from "@solana/wallet-adapter-react";
+import logo from '../../assets/logo.png';
+import logo2 from '../../assets/6X00IxsS_400x400.jpg';
 
 function Header() {
     const { setRanking } = useWalletContext();
@@ -18,6 +18,9 @@ function Header() {
     return (
         <header>
             <div className="container">
+                <div className="logo">
+                    <img src={logo} width={64} style={{borderRadius:"50%"}} />
+                </div>
                 <nav>
                     <ul>
                         <li>
