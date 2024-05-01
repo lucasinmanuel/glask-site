@@ -28,7 +28,7 @@ const Home = () => {
 
   const [sol, setSol] = useState<number>(0);
   const [bal, setBal] = useState<number>(0);
-  const [status, setStatus] = useState<"Transação enviada" | "Transação pendente" | "Transação confirmada" | "Transação falhou. Talvez seja necessário atualizar o site" | "">("");
+  const [status, setStatus] = useState<"Transaction sent" | "Pending Transaction" | "Transaction confirmed" | "Transaction failed. It may be necessary to update the website." | "">("");
 
   const fetchBalance = async () => {
     if (publicKey && connection) {
@@ -45,7 +45,7 @@ const Home = () => {
   const transferSol = async () => {
 
     if (!(sol > 0)) {
-      alert("O valor de transferência não é válido!")
+      alert("The transfer amount is not valid!")
       return
     }
 
@@ -70,17 +70,17 @@ const Home = () => {
 
       transaction.recentBlockhash = latestBlockHash.blockhash;
 
-      setStatus("Transação pendente");
+      setStatus("Pending Transaction");
 
       const signature = await sendTransaction(transaction, connection);
 
-      setStatus("Transação enviada");
+      setStatus("Transaction sent");
       setTimeout(() => fetchBalance(), 5000);
 
-      console.log("Transferência enviada:", signature);
+      console.log("Transaction sent:", signature);
     } catch (error) {
-      setStatus("Transação falhou. Talvez seja necessário atualizar o site");
-      console.error("Falha ao enviar transferência:", error);
+      setStatus("Transaction failed. It may be necessary to update the website.");
+      console.error("Failed to send transfer:", error);
     }
   };
 
