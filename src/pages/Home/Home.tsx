@@ -16,6 +16,7 @@ import {
   LAMPORTS_PER_SOL,
 } from "@solana/web3.js";
 import { useWalletContext } from "../../contexts/WalletContext";
+import exclamationMark from "../../assets/exclamation-mark.png";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 require("./home.css");
@@ -24,10 +25,10 @@ const Home = () => {
   const { publicKey, sendTransaction } = useWallet(); // Obtém a carteira da pessoa conectada
   const { connection } = useConnection();
   const { WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
- 
+
   const [sol, setSol] = useState<number>(0);
   const [bal, setBal] = useState<number>(0);
-  const [status, setStatus] = useState<"Transação enviada"|"Transação pendente"|"Transação confirmada"|"Transação falhou. Talvez seja necessário atualizar o site"|"">("");
+  const [status, setStatus] = useState<"Transação enviada" | "Transação pendente" | "Transação confirmada" | "Transação falhou. Talvez seja necessário atualizar o site" | "">("");
 
   const fetchBalance = async () => {
     if (publicKey && connection) {
@@ -46,9 +47,9 @@ const Home = () => {
     if (!(sol > 0)) {
       alert("O valor de transferência não é válido!")
       return
-    }  
+    }
 
-    if ( !publicKey ) throw new WalletNotConnectedError();
+    if (!publicKey) throw new WalletNotConnectedError();
 
     let lamportsI = sol * LAMPORTS_PER_SOL;
     console.log(lamportsI)
@@ -74,7 +75,7 @@ const Home = () => {
       const signature = await sendTransaction(transaction, connection);
 
       setStatus("Transação enviada");
-      setTimeout(()=>fetchBalance(),5000);
+      setTimeout(() => fetchBalance(), 5000);
 
       console.log("Transferência enviada:", signature);
     } catch (error) {
@@ -104,10 +105,39 @@ const Home = () => {
             {
               status != "" && <span><b>{status}</b></span>
             }
+            <br />
+            <div style={{ color: "red" }}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+                <span><b>Minimum Value:</b> 0.1 Sol;</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+                <span><b>Maximum Value:</b> 10 Sol;</span>
+              </div>
+              <br />
+              All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
+            </div>
           </div>
         ) : (
-          <p>No Connected Wallets</p>
+          <div>
+            <p>No Connected Wallet</p>
+            <br />
+            <div style={{ color: "red" }}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+                <span><b>Minimum Value:</b> 0.1 Sol;</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+                <span><b>Maximum Value:</b> 10 Sol;</span>
+              </div>
+              <br />
+              All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
+            </div>
+          </div>
         )}
+
       </div>
     </div>
   );
