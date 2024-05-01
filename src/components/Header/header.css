@@ -19,6 +19,8 @@ header nav ul {
 display: flex;
 gap: 1rem;
 list-style: none;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 header nav ul li a {
@@ -30,4 +32,16 @@ font-weight: 600;
 
 header nav ul li a:hover {
 text-decoration: underline;
+}
+
+@media screen and (max-width:1024px){
+    header .container {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:720px){
+    header {
+        height: 15vh;
+    }
 }

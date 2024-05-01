@@ -105,39 +105,23 @@ const Home = () => {
             {
               status != "" && <span><b>{status}</b></span>
             }
-            <br />
-            <div style={{ color: "red" }}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
-                <span><b>Minimum Value:</b> 0.1 Sol;</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
-                <span><b>Maximum Value:</b> 10 Sol;</span>
-              </div>
-              <br />
-              All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
-            </div>
           </div>
         ) : (
-          <div>
-            <p>No Connected Wallet</p>
-            <br />
-            <div style={{ color: "red" }}>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
-                <span><b>Minimum Value:</b> 0.1 Sol;</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
-                <span><b>Maximum Value:</b> 10 Sol;</span>
-              </div>
-              <br />
-              All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
-            </div>
-          </div>
+          <p>No Connected Wallet</p>
         )}
-
+        <br />
+        <div style={{ color: "red" }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+            <span><b>Minimum Value:</b> 0.1 Sol;</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img src={exclamationMark} alt="exclamation icon" style={{ height: "1em", marginRight: "0.5em" }} />
+            <span><b>Maximum Value:</b> 10 Sol;</span>
+          </div>
+          <br />
+          All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
+        </div>
       </div>
     </div>
   );

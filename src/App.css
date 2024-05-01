@@ -18,3 +18,9 @@ main {
   margin: 0 auto;
   padding: 0 3%;
 }
+
+@media screen and (max-width:720px){
+  main {
+    height: 85vh;
+  }
+}

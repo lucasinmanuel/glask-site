@@ -6,6 +6,7 @@
 .container h2,.container h5 {
     width: 100%;
     text-align: center;
+    line-break: anywhere;
 }
 
 .allocation_background {
