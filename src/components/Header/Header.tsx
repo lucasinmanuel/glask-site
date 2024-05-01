@@ -37,7 +37,7 @@ function Header() {
                         </li>
                         <span>|</span>
                         <li>
-                            <Link target="_blank" to="t.me/glaskcoinsol">telegram</Link>
+                            <Link target="_blank" to="https://t.me/glaskcoinsol">telegram</Link>
                         </li>
                         <span>|</span>
                         <li>

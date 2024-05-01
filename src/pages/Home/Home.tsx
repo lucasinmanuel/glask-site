@@ -120,7 +120,7 @@ const Home = () => {
             <span><b>Maximum Value:</b> 10 Sol;</span>
           </div>
           <br />
-          All transactions below or above this value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
+          All transactions below or above the specified min and max value will be considered as donations to the project, and their corresponding values in $GLASK will not be sent. By making a transaction, you agree to be aware of these terms.
         </div>
       </div>
     </div>
