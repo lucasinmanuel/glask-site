@@ -26,11 +26,11 @@
 
 .wallet {
     width: 100%;
-    height: 80%;
+    min-height: 90%;
     max-width: 400px;
     background-color: white;
     border: 4px solid black;
-    margin: 25px auto 0 auto;
+    margin: 0 auto 0 auto;
     padding: 3%;
     text-align: center;
     display: flex;
