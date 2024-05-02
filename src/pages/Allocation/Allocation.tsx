@@ -48,11 +48,12 @@ const Allocation = () => {
                   </thead>
                   <tbody>
                       {currentPage.map((tx, index) => {
-                        return tx.carteira != "9JPUx1twRU63V1***************sPrJB3uViK" &&
+                        return (
                            <tr key={index}>
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>
                           </tr>
+                        )
                       })}
                   </tbody>
               </table>
