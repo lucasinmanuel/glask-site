@@ -13,7 +13,8 @@ const Allocation = () => {
       if(ranking){
         const transactions = ranking.transactions;
         if(transactions){
-          setCurrentPage(transactions.slice(0,10));
+          console.log(transactions)
+          setCurrentPage([...transactions.slice(0,10)]);
         }
       }
     },[ranking]);
@@ -52,7 +53,6 @@ const Allocation = () => {
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>
                           </tr>
-                        
                       })}
                   </tbody>
               </table>
