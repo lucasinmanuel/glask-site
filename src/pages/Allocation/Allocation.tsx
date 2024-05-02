@@ -12,6 +12,7 @@ const Allocation = () => {
     useEffect(()=>{
       if(ranking){
         const transactions = ranking.transactions;
+        console.log(transactions)
         if(transactions){
           console.log(transactions)
           setCurrentPage([...transactions.slice(0,10)]);
