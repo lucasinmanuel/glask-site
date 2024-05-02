@@ -1,5 +1,5 @@
 import ReactPaginate from "react-paginate";
-import { useWalletContext } from "../../contexts/WalletContext";
+import { Ranking, useWalletContext } from "../../contexts/WalletContext";
 import { IconContext } from "react-icons";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
@@ -7,18 +7,17 @@ import { useEffect, useState } from "react";
 require("./allocation.css");
 
 const Allocation = () => {
-    const { ranking, WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
     const [currentPage,setCurrentPage] = useState<any[]>([]);
+    const { ranking,setRanking } = useWalletContext();
     useEffect(()=>{
-      if(ranking){
-        const transactions = ranking.transactions;
-        console.log(transactions)
+      fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
+        setRanking(ranking);
+        const transactions = ranking?.transactions;
         if(transactions){
-          console.log(transactions)
           setCurrentPage([...transactions.slice(0,10)]);
         }
-      }
-    },[ranking]);
+      })
+    },[]);
     const handlePageClick = (pageNumber: any)=>{
       // Calcular o índice inicial e final dos itens da página atual
       let startIndex;

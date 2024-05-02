@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import "./header.css"
 import { Outlet, Link, useNavigate, useLocation } from "react-router-dom"
 import { PublicKey } from "@solana/web3.js";
@@ -9,7 +9,7 @@ import logo2 from '../../assets/6X00IxsS_400x400.jpg';
 function Header() {
     const { setRanking } = useWalletContext();
     const location = useLocation();
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         // Chamada para buscar as maiores transferências com paginação
         fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
             setRanking({...data})
