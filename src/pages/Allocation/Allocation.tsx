@@ -33,7 +33,7 @@ const Allocation = () => {
         <div className="container alloction">
             <div className="allocation_background">
               <h2>Ranking (data is updated every 24 hours)</h2>
-              <h5>Transactions for {WALLET_ADDRESS_FOR_DONATION}</h5>
+              <h5>Transactions for 9JPUx1twRU63V1***************sPrJB3uViK</h5>
             </div>
             <div className="allocation_background_table" style={{overflow:"auto"}}>
               <table>
