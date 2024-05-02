@@ -12,7 +12,7 @@ const Allocation = () => {
     useEffect(()=>{
       fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
         setRanking(ranking);
-        const transactions = ranking?.transactions;
+        const transactions = data?.transactions;
         if(transactions){
           setCurrentPage([...transactions.slice(0,10)]);
         }
