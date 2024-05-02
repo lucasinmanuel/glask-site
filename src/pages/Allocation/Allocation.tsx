@@ -12,7 +12,6 @@ const Allocation = () => {
     useEffect(()=>{
       fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
         setRanking(ranking);
-        console.log(data)
         const transactions = data?.transactions;
         if(transactions){
           setCurrentPage([...transactions.slice(0,10)]);
@@ -49,12 +48,11 @@ const Allocation = () => {
                   </thead>
                   <tbody>
                       {currentPage.map((tx, index) => {
-                        return (
+                        return tx.carteira != "9JPUx1twRU63********************TsPrJB3uViK" &&
                            <tr key={index}>
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>
                           </tr>
-                        )
                       })}
                   </tbody>
               </table>
