@@ -11,10 +11,11 @@ const Allocation = () => {
     const { ranking,setRanking } = useWalletContext();
     useEffect(()=>{
       fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
-        setRanking(ranking);
         const transactions = data?.transactions;
         if(transactions){
-          setCurrentPage([...transactions.slice(0,10)]);
+          const formattedTransactions = transactions.map((v)=>v.carteira!="9JPUx1twRU63********************TsPrJB3uViK");
+          setCurrentPage(formattedTransactions.slice(0,10));
+          setRanking(data);
         }
       })
     },[]);
@@ -48,11 +49,12 @@ const Allocation = () => {
                   </thead>
                   <tbody>
                       {currentPage.map((tx, index) => {
-                        return tx.carteira != "9JPUx1twRU63********************TsPrJB3uViK" &&
+                        return (
                            <tr key={index}>
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>
                           </tr>
+                        )
                       })}
                   </tbody>
               </table>
