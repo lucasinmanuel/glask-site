@@ -11,8 +11,10 @@ const Allocation = () => {
     const [currentPage,setCurrentPage] = useState<any[]>([]);
     useEffect(()=>{
       if(ranking){
-        const page = ranking.transactions.slice(0,10);
-        setCurrentPage(page);
+        const transactions = ranking.transactions;
+        if(transactions){
+          setCurrentPage(transactions.slice(0,10));
+        }
       }
     },[ranking]);
     const handlePageClick = (pageNumber: any)=>{
