@@ -10,8 +10,8 @@ const Allocation = () => {
     const { ranking, WALLET_ADDRESS_FOR_DONATION } = useWalletContext();
     const [currentPage,setCurrentPage] = useState<any[]>([]);
     useEffect(()=>{
-      const page = ranking?.transactions.slice(0,10);
-      if(page){
+      if(ranking){
+        const page = ranking.transactions.slice(0,10);
         setCurrentPage(page);
       }
     },[ranking]);
@@ -44,12 +44,14 @@ const Allocation = () => {
                       </tr>
                   </thead>
                   <tbody>
-                      {currentPage.map((tx, index) => (
-                          <tr key={index}>
+                      {currentPage.map((tx, index) => {
+                        return tx.carteira != "9JPUx1twRU63V1***************sPrJB3uViK" &&
+                           <tr key={index}>
                               <td>{tx.carteira}</td>
                               <td>{tx.total}</td>
                           </tr>
-                      ))}
+                        
+                      })}
                   </tbody>
               </table>
             </div>
