@@ -79,8 +79,7 @@ const Home = () => {
 
       console.log("Transaction sent:", signature);
 
-      setTimeout(()=>{
-        fetch("https://glask-api.onrender.com/api/transaction",{
+      fetch("https://glask-api.onrender.com/api/transaction",{
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -88,7 +87,6 @@ const Home = () => {
         },
         body: JSON.stringify({signature:signature})
       });
-      },1000);
     } catch (error) {
       setStatus("Transaction failed. It may be necessary to update the website.");
       console.error("Failed to send transfer:", error);
