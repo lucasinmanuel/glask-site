@@ -14,7 +14,6 @@ const Allocation = () => {
         const transactions = data?.transactions;
         if(transactions){
           setCurrentPage(transactions.slice(0,10));
-          console.log(transactions)
           setRanking(data);
         }
       })
