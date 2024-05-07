@@ -14,6 +14,7 @@ const Allocation = () => {
         const transactions = data?.transactions;
         if(transactions){
           setCurrentPage(transactions.slice(0,10));
+          console.log(transactions)
           setRanking(data);
         }
       })
@@ -50,8 +51,8 @@ const Allocation = () => {
                       {currentPage.map((tx, index) => {
                         return (
                            <tr key={index}>
-                              <td>{tx.carteira}</td>
-                              <td>{tx.total}</td>
+                              <td>{tx.wallet}</td>
+                              <td>{tx.value}</td>
                           </tr>
                         )
                       })}
