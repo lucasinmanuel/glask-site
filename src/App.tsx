@@ -46,7 +46,6 @@ function App() {
       const nextIndex = rpcListIndex + 1;
       for(let i = nextIndex + 1;i < rpcList.length;i++){
         if (await checkRPCAvailability(rpcList[i])) {
-          console.log(`Alternando para ${rpcList[i]}`);
           setRpcListIndex(i);
           setEndpoint(rpcList[i]);
           break;

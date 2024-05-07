@@ -52,7 +52,7 @@ const Home = () => {
     if (!publicKey) throw new WalletNotConnectedError();
 
     let lamportsI = sol * LAMPORTS_PER_SOL;
-    console.log(lamportsI)
+    
     try {
       const latestBlockHash = await connection.getLatestBlockhash();
 
