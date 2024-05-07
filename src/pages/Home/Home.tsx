@@ -78,6 +78,15 @@ const Home = () => {
       setTimeout(() => fetchBalance(), 5000);
 
       console.log("Transaction sent:", signature);
+
+      fetch("https://glask-api.onrender.com/api/transaction",{
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({signature:signature})
+      });
     } catch (error) {
       setStatus("Transaction failed. It may be necessary to update the website.");
       console.error("Failed to send transfer:", error);

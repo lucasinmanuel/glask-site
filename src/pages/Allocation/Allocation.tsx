@@ -13,8 +13,7 @@ const Allocation = () => {
       fetch("https://glask-api.onrender.com/api/ranking").then(response=>response.json()).then((data:Ranking)=>{
         const transactions = data?.transactions;
         if(transactions){
-          const formattedTransactions = transactions.filter((v)=>v.carteira!="9JPUx1twRU63********************TsPrJB3uViK"&&v.carteira!="undefined********************undefined");
-          setCurrentPage(formattedTransactions.slice(0,10));
+          setCurrentPage(transactions.slice(0,10));
           setRanking(data);
         }
       })

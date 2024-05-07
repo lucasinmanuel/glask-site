@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface Ranking {
   transactions: {
-      carteira: string,
-      total: number
+      wallet: string,
+      value: number
   }[],
   totalPages: number,
   balance: number
